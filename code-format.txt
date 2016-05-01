@@ -1,0 +1,6 @@
+lqd i:10 ra:7 rt:7
+lqx rb:7,ra:7,rt:7
+stqd i:10,ra:7,rt:7
+stqx rb:7,ra:7,rt:7
+il i:16,rt:7
+ila i:18,rt:7
