@@ -20,26 +20,44 @@ def build_code_format_dict():
 
 def parsing():
 	coding = open("code.txt",'r')
-	command=[]
+
 	a=7
+	output_file = open("output.txt",'w')
 	for line in coding:
+		command=[]
 		text = line.strip()
 		code = text.split(" ")
 		command.extend( opcode_dict[code[0]] )
 		args = code[1].split(",")
-		command.extend(args[0])
+		formatter = code_format_dict[code[0]].split(",")
+		print "format", formatter
+		print "length", len(args)
+		print "arguements",args
+		for x in range(len(args)-1,-1,-1):
+			print args[x]
+			arg_val = (args[x].split(":"))[1]  #code input is ra:4 rt:9 i:4
+			print arg_val
+			#command.extend(arg_val)
+			command.extend(binary(num=int(arg_val),length=int(formatter[x]) ))
+		print "command",command
+		print len(command)
+		for y in xrange(0,len(command)):
+			output_file.write(command[y])
+			if ( (y+1) % 8 == 0) and (y>0):
+				output_file.write("\n")
+		#command.extend(args[0])
 		#command.extend(bin(int(code[1])))
 
 		#command.extend(format(int(int(args[0]) & 0xff ), '07b'))
-		command.extend(binary(num=int(args[0]),length=a))
+		#command.extend(binary(num=int(args[0]),length=a))
 		#command.extend("{0:b}".format(int(args[0]) & 0xff ))
-		print command
+
 
 def binary(num, pre='', length=8, spacer=0):
     return '{0}{{:{1}>{2}}}'.format(pre, spacer, length).format(bin(num)[2:])
 
 build_dict()
 build_code_format_dict()
-parsing()
 print opcode_dict
 print code_format_dict
+parsing()

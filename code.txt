@@ -1,1 +1,2 @@
-lqd 9,4,4
+lqd rt:9,ra:4,i:4
+lqx rt:1,ra:2,rb:3
