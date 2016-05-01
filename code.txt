@@ -1,2 +1,3 @@
-lqd rt:9,ra:4,i:4
-lqx rt:1,ra:2,rb:3
+lqd 9,4,4
+lqx 1,2,3
+clz 7,8
